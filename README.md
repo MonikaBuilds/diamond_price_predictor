@@ -1,16 +1,10 @@
 # Links for Download
 
-'''
 https://www.anaconda.com/download
-'''
 
-'''
 https://code.visualstudio.com/download
-'''
 
-'''
 https://git-scm.com/downloads
-'''
 
 
 # Create a Virtual Environment
