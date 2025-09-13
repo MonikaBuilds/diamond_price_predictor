@@ -1,7 +1,7 @@
-```bash
+
 # create a virtual environment
 
-
+```bash
 conda create -p env python=3.8 iy
 
 
@@ -34,4 +34,6 @@ git remote add origin <your repo git url>
 
 
 git push -u origin main
+
+---
 
