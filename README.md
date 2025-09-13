@@ -2,16 +2,17 @@
 
 
 '''
+
 https://www.anaconda.com/download
 '''
 
-
 '''
+
 https://code.visualstudio.com/download
 '''
 
-
 '''
+
 https://git-scm.com/downloads
 '''
 
