@@ -15,8 +15,6 @@ source activate ./env
 # Git Commands 
 
 ```
-
-```
 git init
 ```
 
