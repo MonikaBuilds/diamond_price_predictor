@@ -1,7 +1,7 @@
 # Link for the download
 
 
-'''
+'''bash
 
 https://www.anaconda.com/download
 '''
