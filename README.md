@@ -1,10 +1,16 @@
 # Links for Download
 
+'''bash
 https://www.anaconda.com/download
+'''
 
+'''bash
 https://code.visualstudio.com/download
+'''
 
+'''bash
 https://git-scm.com/downloads
+'''
 
 
 # Create a Virtual Environment
