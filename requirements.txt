@@ -2,4 +2,6 @@ pandas
 numpy
 flask
 
+ipykernel
+
 -e .
