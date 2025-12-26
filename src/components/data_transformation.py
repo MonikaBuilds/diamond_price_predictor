@@ -11,11 +11,11 @@ from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import save_object
+from src.utils import save_model
 
 @dataclass
 class DataTransformationConfig:
-    preprosessor_obj_file:str = os.path.join("artifacts","preprocessing.pkl")
+    preprosessor_obj_file:str = os.path.join("artifact","preprocessing.pkl")
     
 class DataTransformation:
     def __init__(self):
@@ -27,8 +27,8 @@ class DataTransformation:
             logging.info('DAta Transformation initiated')
         
         # Define which column should be ordinal-encodes and which should be scaled
-            numerical_column = ['carat', 'depth', 'table', 'x', 'y', 'z']
-            categorical_column = ['cut', 'color', 'clarity']
+            numerical_column = ['carat', 'depth', 'table', 'x', 'y', 'z','cut', 'color', 'clarity']
+            categorical_column = []
         
         # define the custom ranking for each ordinal variable
             cut_categories = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal']
@@ -51,7 +51,7 @@ class DataTransformation:
 
                 ('imputer', SimpleImputer(strategy="most_frequent")),
 
-            (   'encoding', OrdinalEncoder(categories=[cut_categories, color_categories, clarity_categories]))
+                ('scaler', StandardScaler())
 
             ])
         
@@ -73,6 +73,10 @@ class DataTransformation:
         # reading train and test data
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
+            
+            for col in ['cut', 'color', 'clarity']:
+                train_df[col] = train_df[col].astype(str)
+                test_df[col] = test_df[col].astype(str)
         
             logging.info('Read train and test data completed')
             logging.info(f"Train DataFrame Head : \n{train_df.head().to_string()}")
@@ -84,7 +88,8 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformation_object()
         
             target_column_name = 'price'
-            drop_columns = [target_column_name,'id']
+            drop_columns = [col for col in ['price', 'id'] if col in train_df.columns]
+
         
             input_feature_train_df = train_df.drop(columns=drop_columns,axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -102,7 +107,7 @@ class DataTransformation:
             train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
             test_arr = np.c_[input_feature_test_arr,np.array(target_feature_test_df)]
         
-            save_object(
+            save_model(
                 file_path = self.data_transformation_config.preprosessor_obj_file,
                 obj = preprocessing_obj
             )
@@ -120,4 +125,13 @@ class DataTransformation:
             logging.info("Exception occured in the initiate_data_transformation")
         
             raise CustomException(e,sys)
-        
+
+
+if __name__=='__main__':
+    
+    obj = DataTransformation()
+
+    train_path = os.path.join("artifact", "train.csv")
+    test_path  = os.path.join("artifact", "test.csv")
+
+    obj.initiate_data_transformation(train_path, test_path)
