@@ -27,8 +27,11 @@ def save_model(file_path, obj):
 # LOAD MODEL
 def load_model(file_path):   
     try:
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+        
         with open(file_path, 'rb') as file_obj:
-            logging.info("Model loaded successfully")
+            logging.info(f"Model loaded successfully from {file_path}")
             return pickle.load(file_obj)
 
     except Exception as e:
@@ -37,7 +40,7 @@ def load_model(file_path):
 
 
 #  EVALUATE MODEL
-def evaluate_model(x_train, y_train, x_test, y_test, models):
+def evaluate_model(x_train,y_train,x_test,y_test,models):
     try:
         report = {}
 
@@ -55,7 +58,12 @@ def evaluate_model(x_train, y_train, x_test, y_test, models):
             test_model_score = r2_score(y_test, y_test_pred)
 
             # Save test score
-            report[model_name] = test_model_score
+            report[model_name] = {
+                'Train R2': r2_score(y_train, y_train_pred),
+                'Test R2': r2_score(y_test, y_test_pred),
+                'Test MAE': mean_absolute_error(y_test, y_test_pred),
+                'Test RMSE': np.sqrt(mean_squared_error(y_test, y_test_pred))
+            }
 
             logging.info(
                 f"{model_name} --> Train R2: {train_model_score}, Test R2: {test_model_score}"

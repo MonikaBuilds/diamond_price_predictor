@@ -59,16 +59,16 @@ class ModelTrainer:
             print('\n=====================================================================')
             logging.info(f'Model Report : {model_report}')
                 
-            # Get best model score from evaluation report
-            best_model_score = max(sorted(model_report.values()))
-                
-            # Get the name of the best performing model
-            best_model_name = list(model_report.keys())[
-                list(model_report.values()).index(best_model_score)
-            ]
+            best_model_name = None
+            best_model_score = -float("inf")
 
-            # Fetch the best model object
+            for model_name, metrics in model_report.items():
+                if metrics["Test R2"] > best_model_score:
+                    best_model_score = metrics["Test R2"]
+                    best_model_name = model_name
+
             best_model = models[best_model_name]
+
             
             # Print and log best model details
             print(
