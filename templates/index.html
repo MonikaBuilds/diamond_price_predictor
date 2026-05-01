@@ -1,2 +1,94 @@
-<h1> Welcome to the Data Science Project </h1>
-<h2>Let's learn together !! </h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Predictor - ML Bootcamp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-2 text-blue-600 font-bold text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 2l6 4v8l-6 4-6-4V6l6-4zm0 2.5L5.5 7.5v5L10 15l4.5-2.5v-5L10 4.5z"/>
+                </svg>
+                <span>Diamond Estimator</span>
+            </div>
+            <div>
+                <a href="/predict" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-md transition-all">Try Predictor</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex-grow flex items-center justify-center hero-bg text-white px-4 py-20 relative overflow-hidden">
+        <!-- Abstract Shapes -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        
+        <div class="max-w-4xl mx-auto text-center z-10">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-lg">
+                Predict Diamond Prices with Precision
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-100 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Empower your decisions with our advanced Machine Learning model. Get accurate valuations based on the 4 C's and physical dimensions in seconds.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/predict" class="glass-panel hover:bg-white hover:text-blue-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    Start Predicting Now &rarr;
+                </a>
+            </div>
+            
+            <!-- Features Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
+                <div class="glass-panel p-6 rounded-2xl text-left">
+                    <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
+                    <p class="text-blue-100/80 text-sm">Real-time predictions powered by a highly optimized Scikit-Learn pipeline.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-left">
+                    <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Highly Accurate</h3>
+                    <p class="text-blue-100/80 text-sm">Trained on thousands of real-world diamond records for reliable estimations.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-left">
+                    <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">9 Parameter Input</h3>
+                    <p class="text-blue-100/80 text-sm">Analyzes Carat, Cut, Color, Clarity, Depth, Table, X, Y, and Z for comprehensive analysis.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Data Science - Monika Bhati. Designed for Excellence.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
