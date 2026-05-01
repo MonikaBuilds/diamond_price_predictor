@@ -28,6 +28,7 @@ jobs:
   build-and-push-ecr-image:
     name: Continuous Delivery
     needs: integration
+    if: ${{ vars.ENABLE_AWS_DEPLOY == 'true' }}
     runs-on: ubuntu-latest
     outputs:
       image: ${{ steps.build-image.outputs.image }}
@@ -65,6 +66,7 @@ jobs:
   continuous-deployment:
     name: Continuous Deployment
     needs: build-and-push-ecr-image
+    if: ${{ vars.ENABLE_AWS_DEPLOY == 'true' }}
     runs-on: self-hosted
     steps:
       - name: Checkout Code
